@@ -28,14 +28,13 @@ class ProductManager {
         // verificación del ingreso de todos los parámetros y unicidad del code establecido.
         // para luego agilizar los ejemplos los errores serán mostrados en consola con un console.log y no con un throw new Error.
 
-        if (title === undefined || description === undefined || price === undefined || thumbnail === undefined || code === undefined || stock === undefined) {
-             console.log('ERROR! Please enter all the parameters to add a new product: title, description, price, thumbnail, code and stock')
-        } else if (codeExist) {
-             console.log(`ERROR! The code: ${code} already exists. Please enter another one!`)
-        } else {
-            // Si se pasan las dos verificaciones anteriores se suma al array product el nuevo producto.
-            this.products.push(newProduct)
-        }   
+        if (!title || !description || !price || !thumbnail || !code || !stock) {
+            throw new Error('Please enter all the parameters to add a new product: title, description, price, thumbnail, code and stock');
+          }
+          if (codeExist) {
+            throw new Error(`The code: ${code} already exists. Please enter another one!`);
+          }
+          this.products.push(newProduct);
     }
 
     getProduct () {
